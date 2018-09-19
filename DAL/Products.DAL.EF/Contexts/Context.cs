@@ -1,12 +1,13 @@
-﻿namespace Products.DAL.EF
+﻿namespace Products.DAL.EF.Contexts
 {
     using System.Data.Entity;
 
     using Products.Business.Entities;
+    using Products.DAL.EF.Configurations;
 
-    public sealed class Context : DbContext
+    public abstract class Context : DbContext
     {
-        public Context(string connectionString)
+        protected Context(string connectionString)
             : base(connectionString)
         {
         }

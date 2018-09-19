@@ -1,4 +1,4 @@
-﻿namespace Products.DAL.EF
+﻿namespace Products.DAL.EF.Configurations
 {
     using System.Data.Entity.ModelConfiguration;
 

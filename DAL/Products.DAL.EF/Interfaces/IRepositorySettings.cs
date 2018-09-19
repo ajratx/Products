@@ -1,4 +1,4 @@
-﻿namespace Produts.DAL.Interfaces
+﻿namespace Products.DAL.EF.Interfaces
 {
     public interface IRepositorySettings
     {

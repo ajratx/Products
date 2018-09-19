@@ -1,4 +1,4 @@
-﻿namespace Produts.DAL.Interfaces
+﻿namespace Products.DAL.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

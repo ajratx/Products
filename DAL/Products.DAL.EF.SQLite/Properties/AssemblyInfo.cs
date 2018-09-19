@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Products.Core")]
+[assembly: AssemblyTitle("Products.DAL.EF.SQLite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Products.Core")]
+[assembly: AssemblyProduct("Products.DAL.EF.SQLite")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("80a39e9b-c88e-424a-9844-f0c36b572f65")]
+[assembly: Guid("5b538b92-9ef5-4f59-babf-ff0dac177346")]
 
 // Version information for an assembly consists of the following four values:
 //
