@@ -1,5 +1,6 @@
-﻿namespace Products.DAL.EF.Contexts
+﻿namespace Products.DAL.EF
 {
+    using System.Data.Common;
     using System.Data.Entity;
 
     using Products.Business.Entities;
@@ -7,8 +8,8 @@
 
     public abstract class Context : DbContext
     {
-        protected Context(string connectionString)
-            : base(connectionString)
+        protected Context(DbConnection connection)
+            : base(connection, true)
         {
         }
 

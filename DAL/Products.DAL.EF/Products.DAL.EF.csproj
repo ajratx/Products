@@ -38,9 +38,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexts\Context.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="Interfaces\IRepositorySettings.cs" />
     <Compile Include="Configurations\ProductConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,7 +58,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

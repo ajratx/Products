@@ -6,27 +6,17 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using Products.Core.Interfaces;
-    using Products.Core.Models;
-
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly IProductsService productsService;
-
         private string name;
 
         private decimal price;
 
         private int count;
 
-        public MainViewModel(IProductsService productsService)
-        {
-            this.productsService = productsService;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand CreateCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Name
         {
@@ -65,15 +55,19 @@
         {
             try
             {
+                await Task.FromResult<object>(null).ConfigureAwait(false);
+                /*
                 var newProduct = new Product();
                 newProduct.Name = Name;
                 newProduct.Price = Price;
                 newProduct.Count = Count;
 
                 await productsService.AddAsync(newProduct);
+                */
             }
             catch (Exception e)
             {
+                await Task.FromException(e).ConfigureAwait(false);
             }
         }
     }

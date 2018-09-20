@@ -4,7 +4,7 @@
 
     using Products.Business.Entities;
 
-    internal sealed class ProductConfiguration : EntityTypeConfiguration<Product>
+    public sealed class ProductConfiguration : EntityTypeConfiguration<Product>
     {
         public ProductConfiguration()
         {

@@ -5,46 +5,45 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using Products.DAL.EF.Contexts;
     using Products.DAL.EF.Interfaces;
     using Products.DAL.Interfaces;
 
-    public sealed class Repository<T> : IRepository<T>, IDisposable
+    public abstract class Repository<T> : IRepository<T>, IDisposable
         where T : class
     {
-        private readonly Context context;
-
         private bool disposed;
 
-        public Repository(IRepositorySettings settings)
+        protected Repository(IRepositorySettings settings)
         {
             CheckSettings(settings);
-            context = new Context(settings.ConnectionString);
-            CheckContext(context);
         }
+
+        protected abstract Context Context { get; }
 
         public async Task AddAsync(T entity)
         {
             ThrowIfDisposed();
-            await Task.Run(() => context.Set<T>().Add(entity)).ConfigureAwait(false);
+            await Task.Run(() => Context.Set<T>().Add(entity)).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             ThrowIfDisposed();
-            return await context.Set<T>().ToArrayAsync().ConfigureAwait(false);
+            return await Context.Set<T>().ToArrayAsync().ConfigureAwait(false);
         }
 
         public async Task SaveAsync()
         {
             ThrowIfDisposed();
-            await context.SaveChangesAsync().ConfigureAwait(false);
+            await Context.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public void Dispose()
         {
             Dispose(true);
         }
+
+        protected abstract Context InitializeContext(IRepositorySettings settings);
 
         private static void CheckSettings(IRepositorySettings settings)
         {
@@ -73,7 +72,7 @@
         {
             if (disposed) return;
 
-            if (disposing) context.Dispose();
+            if (disposing) Context.Dispose();
 
             disposed = true;
         }
