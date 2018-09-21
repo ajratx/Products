@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.DAL", "DAL\Product
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.DAL.EF.SQLite", "DAL\Products.DAL.EF.SQLite\Products.DAL.EF.SQLite.csproj", "{5B538B92-9EF5-4F59-BABF-FF0DAC177346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.DAL.EF.SQLite", "Test\Products.DAL.EF.SQLite\Products.DAL.EF.SQLite.csproj", "{38F9F34F-58ED-4A5F-BF4E-EA3AD77E0CF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.DAL.EF.SQLite.Tests", "Test\Products.DAL.EF.SQLite.Tests\Products.DAL.EF.SQLite.Tests.csproj", "{38F9F34F-58ED-4A5F-BF4E-EA3AD77E0CF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

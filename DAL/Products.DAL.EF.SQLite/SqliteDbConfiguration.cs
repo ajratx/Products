@@ -5,13 +5,16 @@
     using System.Data.SQLite;
     using System.Data.SQLite.EF6;
 
-    public sealed class SqliteDbConfiguration : DbConfiguration
+    internal sealed class SqliteDbConfiguration : DbConfiguration
     {
-        public SqliteDbConfiguration()
+        internal SqliteDbConfiguration()
         {
-            SetProviderFactory("System.Data.SQLite", SQLiteFactory.Instance);
             SetProviderFactory("System.Data.SQLite.EF6", SQLiteProviderFactory.Instance);
-            SetProviderServices("System.Data.SQLite", (DbProviderServices)SQLiteProviderFactory.Instance.GetService(typeof(DbProviderServices)));
+            SetProviderFactory("System.Data.SQLite", SQLiteFactory.Instance);
+
+            SetProviderServices(
+                "System.Data.SQLite",
+                (DbProviderServices)SQLiteProviderFactory.Instance.GetService(typeof(DbProviderServices)));
         }
     }
 }
