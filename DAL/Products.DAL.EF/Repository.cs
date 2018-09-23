@@ -4,26 +4,28 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Threading.Tasks;
-
-    using Products.DAL.EF.Interfaces;
-    using Products.DAL.Interfaces;
+    using Products.DAL.Core.Interfaces;
+    using Products.DAL.EF.Interfaces; 
 
     public abstract class Repository<T> : IRepository<T>, IDisposable
         where T : class
     {
-        private bool disposed;
+        private bool disposed; 
 
         protected Repository(IRepositorySettings settings)
         {
             CheckSettings(settings);
+            Settings = settings;
         }
+
+        protected IRepositorySettings Settings { get; }
 
         protected abstract Context Context { get; }
 
         public async Task AddAsync(T entity)
         {
             ThrowIfDisposed();
-            await Task.Run(() => Context.Set<T>().Add(entity)).ConfigureAwait(false);
+            await Task.Run(() => Context.Set<T>()?.Add(entity)).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -43,8 +45,6 @@
             Dispose(true);
         }
 
-        protected abstract Context InitializeContext(IRepositorySettings settings);
-
         private static void CheckSettings(IRepositorySettings settings)
         {
             if (settings == null)
@@ -54,12 +54,6 @@
                 throw new ArgumentException(
                     "ConnectionString can't be null or white space",
                     nameof(settings.ConnectionString));
-        }
-
-        private static void CheckContext(DbContext context)
-        {
-            if (context.Set<T>() == null)
-                throw new ArgumentException("Context has no contains requarement set", nameof(context));
         }
 
         private void ThrowIfDisposed()
