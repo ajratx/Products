@@ -124,6 +124,14 @@
       <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
       <Name>Products.Infrastucture.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Products.Client.WCF\Products.Client.WCF.csproj">
+      <Project>{BAE844F9-1B20-49D1-8A48-D05491CB4C8A}</Project>
+      <Name>Products.Client.WCF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Products.Client.WPF.Common\Products.Client.WPF.Common.csproj">
+      <Project>{8F734187-809D-45F6-A70B-182044B59127}</Project>
+      <Name>Products.Client.WPF.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

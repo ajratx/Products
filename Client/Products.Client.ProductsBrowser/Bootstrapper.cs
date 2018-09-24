@@ -1,34 +1,19 @@
 ﻿namespace Products.Client.ProductsBrowser
-{
-    using System.Windows;
-
+{      
     using Autofac;
-
-    using Prism.Autofac;
-
+    using Products.Business.Contracts;
     using Products.Client.ProductsBrowser.Views;
+    using Products.Client.WCF;
+    using Products.Client.WPF.Common.Utility;
     using Products.Infrastructure.DefaultLogger;
     using Products.Infrastucture.Core;
 
-    internal sealed class Bootstrapper : AutofacBootstrapper
+    internal sealed class Bootstrapper : AppBootstrapper<ProductsBrowserView>
     {
-        protected override DependencyObject CreateShell()
+        protected override void ConfigureBuilder(ContainerBuilder builder)
         {
-            return Container.Resolve<ProductsBrowserView>();
-        }
-
-        protected override void InitializeShell()
-        {
-            Application.Current.MainWindow.Show();
-        }
-
-        protected override ContainerBuilder CreateContainerBuilder()
-        {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterType<DefaultLog>().As<ILog>();
-
-            return builder;
+            builder.Register(x => new DefaultLog()).As<ILog>().SingleInstance();
+            builder.Register(x => new ProductClient()).As<IProductContract>();
         }
     }
 }
