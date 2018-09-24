@@ -2,7 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Windows.Input;
+
+    using Nito.Mvvm;
 
     using Prism.Mvvm;
 
@@ -23,9 +24,11 @@
         {
             this.products = products ?? throw new ArgumentNullException(nameof(products));
             this.log = log ?? new DefaultLog();
+
+            CreateProductCommand = new AsyncCommand(CreateProductAsync);
         }
 
-        public ICommand CreateProductCommand { get; set; }
+        public IAsyncCommand CreateProductCommand { get; set; }
 
         public string Name
         {
@@ -47,6 +50,8 @@
 
         private async Task CreateProductAsync()
         {
+            await Task.Delay(5000).ConfigureAwait(false);
+
             try
             {
                 var newProduct = new Product
@@ -56,7 +61,7 @@
                     Count = Count
                 };
 
-                await products.AddAsync(newProduct);
+                await products.AddAsync(newProduct).ConfigureAwait(false);
             }
             catch (Exception e)
             {

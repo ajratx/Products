@@ -40,14 +40,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DAL\Products.DAL.Core\Products.DAL.Core.csproj">
-      <Project>{71C99B6C-29CD-4D23-8409-E1638D5FADDF}</Project>
-      <Name>Products.DAL.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Products.Infrastucture.Core\Products.Infrastucture.Core.csproj">
-      <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
-      <Name>Products.Infrastucture.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Products.Business.Entities\Products.Business.Entities.csproj">
       <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
       <Name>Products.Business.Entities</Name>

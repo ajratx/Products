@@ -18,13 +18,13 @@
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_NullConnection_ExceptionThrown()
-        {        
-            var context = new LocalDbContext(sqlConnection);
+        {
+            context = new LocalDbContext(sqlConnection);
         }
 
         [TestMethod]
         public void AddTwoEntities_GetAll()
-        {     
+        {
             sqlConnection = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=ProductsTest");
             context = new LocalDbContext(sqlConnection);
             anotherContext = new LocalDbContext(sqlConnection);
@@ -52,7 +52,7 @@
         [TestCleanup]
         public void CleanUp()
         {
-            context?.Database?.Delete();
+            // context?.Database?.Delete();
 
             context?.Dispose();
             anotherContext?.Dispose();

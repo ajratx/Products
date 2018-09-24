@@ -2,8 +2,6 @@
 {
     using System.Windows;
 
-    using Products.Client.ProductsBrowser;
-
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)

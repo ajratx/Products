@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Threading.Tasks;
+
     using Products.DAL.Core.Interfaces;
-    using Products.DAL.EF.Interfaces; 
+    using Products.DAL.EF.Interfaces;
 
     public abstract class Repository<T> : IRepository<T>, IDisposable
         where T : class
     {
-        private bool disposed; 
+        private bool disposed;
 
         protected Repository(IRepositorySettings settings)
         {
