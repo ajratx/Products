@@ -1,6 +1,7 @@
 ﻿namespace Products.Client.ProductsBrowser
-{      
+{
     using Autofac;
+
     using Products.Business.Contracts;
     using Products.Client.ProductsBrowser.Views;
     using Products.Client.WCF;

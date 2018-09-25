@@ -50,8 +50,6 @@
 
         private async Task CreateProductAsync()
         {
-            await Task.Delay(5000).ConfigureAwait(false);
-
             try
             {
                 var newProduct = new Product

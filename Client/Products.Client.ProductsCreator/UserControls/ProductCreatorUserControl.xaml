@@ -1,8 +1,6 @@
 ﻿<UserControl x:Class="Products.Client.ProductsCreator.UserControls.ProductCreatorUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,14 +14,14 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Наименование" />
+        <Label Grid.Row="0" Grid.Column="0" Content="Наименование" />
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Цена" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Цена" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Count}" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Количество" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Количество" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Price}" />
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
-            <Button   Content="Создать" Command="{Binding CreateProductCommand}"/>
+            <Button Content="Создать" Command="{Binding CreateProductCommand}" Width="150"/>
         </StackPanel>
     </Grid>
 </UserControl>
