@@ -3,8 +3,8 @@
     using System;
 
     using Products.Business.Contracts;
-    using Products.Infrastructure.DefaultLogger;
-    using Products.Infrastucture.Core;
+    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.DefaultLog;
 
     internal sealed class ProductsBrowserViewModel
     {

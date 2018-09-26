@@ -38,5 +38,11 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Products.Business.Entities\Products.Business.Entities.csproj">
+      <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
+      <Name>Products.Business.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

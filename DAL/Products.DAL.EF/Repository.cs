@@ -23,10 +23,10 @@
 
         protected abstract Context Context { get; }
 
-        public async Task AddAsync(T entity)
+        public async Task AddAsync(params T[] entities)
         {
             ThrowIfDisposed();
-            await Task.Run(() => Context.Set<T>()?.Add(entity)).ConfigureAwait(false);
+            await Task.Run(() => Context.Set<T>()?.AddRange(entities)).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()

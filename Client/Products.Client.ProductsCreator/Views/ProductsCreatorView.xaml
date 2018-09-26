@@ -2,45 +2,45 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:resources="clr-namespace:Products.Client.ProductsCreator.Resources"
         xmlns:userControls="clr-namespace:Products.Client.ProductsCreator.UserControls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         prism:ViewModelLocator.AutoWireViewModel="True" 
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Title="{x:Static resources:Literals.WindowTitle}">
     <Grid>
         <Grid>
             <Grid.Resources>
                 <BooleanToVisibilityConverter x:Key="BoolToVis" />
+                <xctk:InverseBoolConverter x:Key="InverseBoolConverter"/>
             </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <userControls:ProductCreatorUserControl
                 Grid.Row="0"
-                IsEnabled="{Binding CreateProductCommand.Execution.IsCompleted}" />
+                IsEnabled="{Binding CreateProductCommand.IsExecuting, Converter={StaticResource InverseBoolConverter}}" />
             <xctk:BusyIndicator
                 Grid.Row="0"
-                BusyContent="Cоздание продукта..."
+                BusyContent="{x:Static resources:Literals.CreatingExecuting}"
                 IsBusy="{Binding CreateProductCommand.IsExecuting}"
                 VerticalAlignment="Center"/>
-            <StatusBar Grid.Row="1">
-                <Label
-                    FontSize="12"
-                    Foreground="Green"
-                    Height="25"
-                    Margin="2 0"
-                    Content="Продукт успешно создан"
-                    Visibility="{Binding CreateProductCommand.Execution.IsSuccessfullyCompleted, Converter={StaticResource BoolToVis}}" />
-                <Label
-                    FontSize="12"
-                    Foreground="Red"
-                    Height="25"
-                    Margin="2 0"
-                    Content="Не удалось создать продукт"
-                    Visibility="{Binding CreateProductCommand.Execution.IsFaulted, Converter={StaticResource BoolToVis}}" />
+            <StatusBar Grid.Row="1" Height="25">
+                <Grid>
+                    <Label
+                        Style="{StaticResource SuccessStatusBarLabelStyle}"
+                        Content="{x:Static resources:Literals.CreateSuccsess}"
+                        Visibility="{Binding CreatingIsSuccessfullyCompleted, Converter={StaticResource BoolToVis}}" />
+                    <Label
+                        Style="{StaticResource FaultedStatusBarLabelStyle}"
+                        Content="{x:Static resources:Literals.CreateFaulted}"
+                        Visibility="{Binding CreatingIsFaulted, Converter={StaticResource BoolToVis}}" />
+                </Grid>
             </StatusBar>
         </Grid>
     </Grid>

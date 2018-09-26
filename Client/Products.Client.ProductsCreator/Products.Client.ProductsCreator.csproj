@@ -107,9 +107,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Resources\Literals.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Literals.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProductCreatorUserControl.xaml.cs">
       <DependentUpon>ProductCreatorUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidationRules\NotEmptyString.cs" />
     <Compile Include="ViewModels\ProductsCreatorViewModel.cs" />
     <Compile Include="Views\ProductsCreatorView.xaml.cs">
       <DependentUpon>ProductsCreatorView.xaml</DependentUpon>
@@ -134,6 +140,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Literals.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Literals.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -153,13 +163,13 @@
       <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
       <Name>Products.Business.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
+      <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
+      <Name>Products.Infrastructure.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.DefaultLog\Products.Infrastructure.DefaultLog.csproj">
       <Project>{83F5CB9C-E053-4B0B-BB22-97FF229B3303}</Project>
       <Name>Products.Infrastructure.DefaultLog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Products.Infrastucture.Core\Products.Infrastucture.Core.csproj">
-      <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
-      <Name>Products.Infrastucture.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Products.Client.WCF\Products.Client.WCF.csproj">
       <Project>{BAE844F9-1B20-49D1-8A48-D05491CB4C8A}</Project>

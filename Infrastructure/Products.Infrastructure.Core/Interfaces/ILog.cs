@@ -1,4 +1,4 @@
-﻿namespace Products.Infrastucture.Core
+﻿namespace Products.Infrastructure.Core.Interfaces
 {
     using System;
 

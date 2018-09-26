@@ -9,6 +9,7 @@
         public ProductConfiguration()
         {
             HasKey(product => product.Id);
+            HasIndex(product => product.Name).IsUnique();
             Property(product => product.Name).IsRequired().HasMaxLength(100);
         }
     }

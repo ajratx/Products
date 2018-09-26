@@ -39,9 +39,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Products.Infrastucture.Core\Products.Infrastucture.Core.csproj">
+    <ProjectReference Include="..\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
       <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
-      <Name>Products.Infrastucture.Core</Name>
+      <Name>Products.Infrastructure.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

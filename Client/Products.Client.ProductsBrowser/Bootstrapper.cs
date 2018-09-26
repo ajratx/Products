@@ -6,8 +6,8 @@
     using Products.Client.ProductsBrowser.Views;
     using Products.Client.WCF;
     using Products.Client.WPF.Common.Utility;
-    using Products.Infrastructure.DefaultLogger;
-    using Products.Infrastucture.Core;
+    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.DefaultLog;
 
     internal sealed class Bootstrapper : AppBootstrapper<ProductsBrowserView>
     {

@@ -10,7 +10,7 @@
     public interface IProductContract
     {
         [OperationContract]
-        Task AddAsync(Product product);
+        Task AddAsync(params Product[] products);
 
         [OperationContract]
         Task<IEnumerable<Product>> GetAllAsync();

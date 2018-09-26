@@ -7,8 +7,8 @@
     <ProjectGuid>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Products.Infrastucture.Core</RootNamespace>
-    <AssemblyName>Products.Infrastucture.Core</AssemblyName>
+    <RootNamespace>Products.Infrastructure.Core</RootNamespace>
+    <AssemblyName>Products.Infrastructure.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

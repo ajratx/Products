@@ -5,6 +5,6 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="Height" Value="28" />
-        <Setter Property="Margin" Value="2 5"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
 </ResourceDictionary>

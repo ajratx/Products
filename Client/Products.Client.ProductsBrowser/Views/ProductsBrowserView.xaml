@@ -8,6 +8,17 @@
         mc:Ignorable="d"
         Title="ProductsBrowserView" Height="450" Width="800">
     <Grid>
-
+        <TabControl>
+            <TabItem Header="Db">
+                <DataGrid ItemsSource="{Binding ProductsFromDb}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Количество"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="File"></TabItem>
+            </TabControl>
     </Grid>
 </Window>

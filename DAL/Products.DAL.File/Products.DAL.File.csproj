@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9A4A2A70-5AE5-4DF7-9983-C845963C0D50}</ProjectGuid>
+    <ProjectGuid>{9691FCB7-F181-482A-8D8A-45AF6456BE6E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Products.Business.Services</RootNamespace>
-    <AssemblyName>Products.Business.Services</AssemblyName>
+    <RootNamespace>Products.DAL.File</RootNamespace>
+    <AssemblyName>Products.DAL.File</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -36,28 +36,17 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductService.cs" />
+    <Compile Include="FileRepository.cs" />
+    <Compile Include="Interfaces\IFileRepositorySettings.cs" />
+    <Compile Include="Interfaces\ISerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DAL\Products.DAL.Core\Products.DAL.Core.csproj">
+    <ProjectReference Include="..\Products.DAL.Core\Products.DAL.Core.csproj">
       <Project>{71C99B6C-29CD-4D23-8409-E1638D5FADDF}</Project>
       <Name>Products.DAL.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
-      <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
-      <Name>Products.Infrastructure.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Products.Business.Contracts\Products.Business.Contracts.csproj">
-      <Project>{A6FA841D-3704-4D25-943A-51B2293237C7}</Project>
-      <Name>Products.Business.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Products.Business.Entities\Products.Business.Entities.csproj">
-      <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
-      <Name>Products.Business.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

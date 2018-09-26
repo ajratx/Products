@@ -9,7 +9,7 @@
     {
         private Context context;
 
-        public ProductRepository(IRepositorySettings settings) 
+        public ProductRepository(IRepositorySettings settings)
             : base(settings)
         {
         }

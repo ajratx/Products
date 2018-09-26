@@ -9,9 +9,9 @@
 
     public sealed class ProductClient : ClientBase<IProductContract>, IProductContract
     {
-        public async Task AddAsync(Product product)
+        public async Task AddAsync(params Product[] products)
         {
-            await Channel.AddAsync(product).ConfigureAwait(false);
+            await Channel.AddAsync(products).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync() =>

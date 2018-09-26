@@ -8,7 +8,7 @@
     using Products.Business.Contracts;
     using Products.Business.Entities;
     using Products.DAL.Core.Interfaces;
-    using Products.Infrastucture.Core;
+    using Products.Infrastructure.Core.Interfaces;
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public sealed class ProductService : IProductContract, IDisposable
@@ -24,12 +24,12 @@
             this.log = log;
         }
 
-        public async Task AddAsync(Product product)
+        public async Task AddAsync(params Product[] products)
         {
             try
             {
                 ThrowIfDisposed();
-                await productRepository.AddAsync(product).ConfigureAwait(false);
+                await productRepository.AddAsync(products).ConfigureAwait(false);
                 await productRepository.SaveAsync().ConfigureAwait(false);
             }
             catch (Exception e)

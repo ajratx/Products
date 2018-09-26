@@ -6,7 +6,7 @@
     public interface IRepository<T>
         where T : class
     {
-        Task AddAsync(T entity);
+        Task AddAsync(params T[] entities);
 
         Task<IEnumerable<T>> GetAllAsync();
 

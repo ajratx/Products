@@ -1,9 +1,9 @@
-﻿namespace Products.Infrastructure.DefaultLogger
+﻿namespace Products.Infrastructure.DefaultLog
 {
     using System;
     using System.Diagnostics;
 
-    using Products.Infrastucture.Core;
+    using Products.Infrastructure.Core.Interfaces;
 
     public class DefaultLog : ILog
     {

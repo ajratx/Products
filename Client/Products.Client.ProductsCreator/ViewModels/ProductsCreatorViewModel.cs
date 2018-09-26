@@ -1,6 +1,7 @@
 ﻿namespace Products.Client.ProductsCreator.ViewModels
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
 
     using Nito.Mvvm;
@@ -9,8 +10,8 @@
 
     using Products.Business.Contracts;
     using Products.Business.Entities;
-    using Products.Infrastructure.DefaultLogger;
-    using Products.Infrastucture.Core;
+    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.DefaultLog;
 
     internal sealed class ProductsCreatorViewModel : BindableBase
     {
@@ -29,6 +30,10 @@
         }
 
         public IAsyncCommand CreateProductCommand { get; set; }
+
+        public bool CreatingIsSuccessfullyCompleted { get; private set; }
+
+        public bool CreatingIsFaulted { get; private set; }
 
         public string Name
         {
@@ -50,21 +55,42 @@
 
         private async Task CreateProductAsync()
         {
+            HideInfoAboutCreating();
+
             try
             {
-                var newProduct = new Product
-                {
-                    Name = Name,
-                    Price = Price,
-                    Count = Count
-                };
+                var newProduct = new Product { Name = Name, Price = Price, Count = Count };
 
-                await products.AddAsync(newProduct).ConfigureAwait(false);
+                await products.AddAsync(new [] { newProduct }).ConfigureAwait(false);
+
+                SayCreatingSuccessfullyCompleted();
             }
             catch (Exception e)
             {
                 log.Error(e);
+                SayCreaingFaulted();
             }
+        }
+
+        private void HideInfoAboutCreating()
+        {
+            CreatingIsSuccessfullyCompleted = false;
+            CreatingIsFaulted = false;
+
+            RaisePropertyChanged(nameof(CreatingIsSuccessfullyCompleted));
+            RaisePropertyChanged(nameof(CreatingIsFaulted));
+        }
+
+        private void SayCreatingSuccessfullyCompleted()
+        {
+            CreatingIsSuccessfullyCompleted = true;
+            RaisePropertyChanged(nameof(CreatingIsSuccessfullyCompleted));
+        }
+
+        private void SayCreaingFaulted()
+        {
+            CreatingIsFaulted = true;
+            RaisePropertyChanged(nameof(CreatingIsFaulted));
         }
     }
 }
