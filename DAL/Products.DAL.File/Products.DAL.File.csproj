@@ -38,9 +38,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileRepository.cs" />
+    <Compile Include="BaseSerializer.cs" />
     <Compile Include="Interfaces\IFileRepositorySettings.cs" />
     <Compile Include="Interfaces\ISerializer.cs" />
+    <Compile Include="Interfaces\ISerializerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,8 +18,8 @@
             </Grid.Resources>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <userControls:ProductCreatorUserControl

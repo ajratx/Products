@@ -1,24 +1,50 @@
 ﻿<Window x:Class="Products.Client.ProductsBrowser.Views.ProductsBrowserView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:resources="clr-namespace:Products.Client.ProductsBrowser.Resources"
+        xmlns:userControls="clr-namespace:Products.Client.ProductsBrowser.UserControls"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        mc:Ignorable="d"
-        Title="ProductsBrowserView" Height="450" Width="800">
+        Title="{x:Static resources:Literals.WindowsTitle}">
     <Grid>
+        <Grid.Resources>
+            <xctk:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </Grid.Resources>
         <TabControl>
-            <TabItem Header="Db">
-                <DataGrid ItemsSource="{Binding ProductsFromDb}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Наименование"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Цена"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Количество"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <TabItem 
+                Header="{x:Static resources:Literals.FilesFromDbTabCaption}"
+                IsEnabled="{Binding Path=IsWaitingDownloadFromDb, Converter={StaticResource InverseBoolConverter}}">
+                <Grid>
+                    <xctk:BusyIndicator 
+                        IsBusy="{Binding Path=IsWaitingDownloadFromDb}" 
+                        Content="{x:Static resources:Literals.WaitDownloadFromDb}"/>
+                    <userControls:DataGridUserControl 
+                        ItemsSource="{Binding Path=ProductsFromDb}"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="File"></TabItem>
-            </TabControl>
+            <TabItem 
+                Header="{x:Static resources:Literals.FileFromFileTabcaption}"
+                IsEnabled="{Binding Path=IsWaitingDownloadFromFile, Converter={StaticResource InverseBoolConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <xctk:BusyIndicator
+                        Grid.Row="0"
+                        IsBusy="{Binding Path=IsWaitingDownloadFromFile}" 
+                        Content="{x:Static resources:Literals.WaitDownloadFromFile}" />
+                    <userControls:DataGridUserControl
+                        Grid.Row="0"
+                        ItemsSource="{Binding Path=ProductsFromFile}" />
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+                        <Button
+                            Content="{x:Static resources:Literals.AddButtonCaption}"
+                            Width="150"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

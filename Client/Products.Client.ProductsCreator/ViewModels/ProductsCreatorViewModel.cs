@@ -1,7 +1,6 @@
 ﻿namespace Products.Client.ProductsCreator.ViewModels
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
 
     using Nito.Mvvm;
@@ -61,7 +60,7 @@
             {
                 var newProduct = new Product { Name = Name, Price = Price, Count = Count };
 
-                await products.AddAsync(new [] { newProduct }).ConfigureAwait(false);
+                await products.AddAsync(newProduct).ConfigureAwait(false);
 
                 SayCreatingSuccessfullyCompleted();
             }

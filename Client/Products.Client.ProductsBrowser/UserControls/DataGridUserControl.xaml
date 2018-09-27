@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Products.Client.ProductsBrowser.UserControls.DataGridUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:Products.Client.ProductsBrowser.Resources"
+             x:Name="DataGridControl">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Path=ItemsSource, ElementName=DataGridControl}">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="{x:Static resources:Literals.NameColumnHeader}" 
+                    Width="*" 
+                    Binding="{Binding Path=Name}" />
+                <DataGridTextColumn 
+                    Header="{x:Static resources:Literals.PriceColumnHeader}" 
+                    Width="300" 
+                    Binding="{Binding Path=Price}"/>
+                <DataGridTextColumn 
+                    Header="{x:Static resources:Literals.CountColumnHeader}" 
+                    Width="200" 
+                    Binding="{Binding Path=Count}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
