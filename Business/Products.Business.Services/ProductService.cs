@@ -7,7 +7,7 @@
 
     using Products.Business.Contracts;
     using Products.Business.Entities;
-    using Products.DAL.Core.Interfaces;
+    using Products.DAL.Core;
     using Products.Infrastructure.Core.Interfaces;
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]

@@ -5,7 +5,7 @@
 
     public interface ISerializer<T>
     {
-        Task SerializeAsync(IEnumerable<T> obj);
+        Task SerializeAsync(IEnumerable<T> items);
 
         Task<IEnumerable<T>> DeserializeAsync();
     }

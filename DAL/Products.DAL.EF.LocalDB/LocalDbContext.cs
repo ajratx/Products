@@ -4,7 +4,7 @@
     using System.Data.Entity;
 
     [DbConfigurationType(typeof(LocalDbConfiguration))]
-    public sealed class LocalDbContext : Context
+    public sealed class LocalDbContext : EfContext
     {
         public LocalDbContext(DbConnection connection)
             : base(connection)

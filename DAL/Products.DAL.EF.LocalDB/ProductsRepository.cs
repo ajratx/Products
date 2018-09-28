@@ -5,16 +5,16 @@
     using Products.Business.Entities;
     using Products.DAL.EF.Interfaces;
 
-    public sealed class ProductRepository : Repository<Product>
+    public sealed class ProductsRepository : EfRepository<Product>
     {
-        private Context context;
+        private EfContext context;
 
-        public ProductRepository(IRepositorySettings settings)
+        public ProductsRepository(IEfRepositorySettings settings)
             : base(settings)
         {
         }
 
-        protected override Context Context =>
+        protected override EfContext Context =>
             context ?? (context = new LocalDbContext(new SqlConnection(Settings.ConnectionString)));
     }
 }

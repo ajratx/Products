@@ -2,7 +2,7 @@
 {
     using Products.DAL.EF.Interfaces;
 
-    public class ProductRepositorySettings : IRepositorySettings
+    public class ProductRepositorySettings : IEfRepositorySettings
     {
         public string ConnectionString { get; set; }
     }

@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="LocalDbContext.cs" />
     <Compile Include="LocalDbConfiguration.cs" />
-    <Compile Include="ProductRepository.cs" />
+    <Compile Include="ProductsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

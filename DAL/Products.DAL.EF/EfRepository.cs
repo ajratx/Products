@@ -5,23 +5,23 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using Products.DAL.Core.Interfaces;
+    using Products.DAL.Core;
     using Products.DAL.EF.Interfaces;
 
-    public abstract class Repository<T> : IRepository<T>, IDisposable
+    public abstract class EfRepository<T> : IRepository<T>, IDisposable
         where T : class
     {
         private bool disposed;
 
-        protected Repository(IRepositorySettings settings)
+        protected EfRepository(IEfRepositorySettings settings)
         {
             CheckSettings(settings);
             Settings = settings;
         }
 
-        protected IRepositorySettings Settings { get; }
+        protected IEfRepositorySettings Settings { get; }
 
-        protected abstract Context Context { get; }
+        protected abstract EfContext Context { get; }
 
         public async Task AddAsync(params T[] entities)
         {
@@ -46,7 +46,7 @@
             Dispose(true);
         }
 
-        private static void CheckSettings(IRepositorySettings settings)
+        private static void CheckSettings(IEfRepositorySettings settings)
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));

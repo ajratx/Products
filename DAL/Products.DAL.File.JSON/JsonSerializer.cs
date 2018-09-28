@@ -15,18 +15,18 @@
         private readonly JavaScriptSerializer serializer;
 
         public JsonSerializer(ISerializerSettings settings)
-            : base(settings) =>
-            serializer = new JavaScriptSerializer();
+            : base(settings)
+            => serializer = new JavaScriptSerializer();
 
-        public override async Task SerializeAsync(IEnumerable<T> objects)
+        protected override async Task InternalSerializeAsync(IEnumerable<T> items)
         {
             if (File.Exists(Settings.FilePath))
             {
-                var objectFromFile = await DeserializeAsync().ConfigureAwait(false);
-                objects = objects.Union(objectFromFile);
+                var itemsFromFile = await InternalDeserializeAsync().ConfigureAwait(false) ?? new T[] { };
+                if (itemsFromFile.Any()) items = items.Union(itemsFromFile).Distinct();
             }
 
-            var jsonFileBytes = Encoding.UTF8.GetBytes(serializer.Serialize(objects));
+            var jsonFileBytes = Encoding.UTF8.GetBytes(serializer.Serialize(items));
             using (var jsonFileStream = new FileStream(Settings.FilePath, FileMode.Create))
             {
                 await jsonFileStream.WriteAsync(
@@ -34,19 +34,18 @@
                         0,
                         jsonFileBytes.Length,
                         CancellationToken.None)
-                    .ConfigureAwait(false);
+                    .ConfigureAwait(true);
             }
         }
 
-        public override async Task<IEnumerable<T>> DeserializeAsync()
+        protected override async Task<IEnumerable<T>> InternalDeserializeAsync()
         {
             return await Task.Run(
                        () =>
                            {
                                var json = File.ReadAllText(Settings.FilePath, Encoding.UTF8);
                                return serializer.Deserialize<IEnumerable<T>>(json);
-                           }).ConfigureAwait(false);
-
+                           }).ConfigureAwait(true);
         }
     }
 }

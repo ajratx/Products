@@ -34,21 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductsFileRepository.cs" />
     <Compile Include="JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\Products.Business.Entities\Products.Business.Entities.csproj">
+      <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
+      <Name>Products.Business.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Products.DAL.File\Products.DAL.File.csproj">
       <Project>{9691FCB7-F181-482A-8D8A-45AF6456BE6E}</Project>
       <Name>Products.DAL.File</Name>

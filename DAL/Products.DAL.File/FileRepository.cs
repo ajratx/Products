@@ -4,28 +4,21 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
 
-    using Products.DAL.Core.Interfaces;
+    using Products.DAL.Core;
     using Products.DAL.File.Interfaces;
 
-    public sealed class FileRepository<T> : IRepository<T>, IDisposable
+    public abstract class FileRepository<T> : IRepository<T>, IDisposable
         where T : class
     {
-        private static ReaderWriterLockSlim fileLock = new ReaderWriterLockSlim();
-
         private readonly ConcurrentQueue<T> products;
-
-        private readonly ISerializer<IEnumerable<T>> serializer;
 
         private bool disposed;
 
-        public FileRepository(ISerializer<IEnumerable<T>> serializer)
-        {
-            products = new ConcurrentQueue<T>();
-            this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
-        }
+        protected FileRepository() => products = new ConcurrentQueue<T>();
+
+        protected abstract ISerializer<T> Serializer { get; }
 
         public async Task AddAsync(params T[] entities)
         {
@@ -40,32 +33,22 @@
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             ThrowIfDisposed();
-            fileLock.EnterReadLock();
-            try
-            {
-                return await serializer.DeserializeAsync().ConfigureAwait(false);
-            }
-            finally
-            {
-                fileLock.ExitReadLock();
-            }
+
+            if (Serializer == null) return null;
+
+            return await Serializer.DeserializeAsync().ConfigureAwait(false);
         }
 
         public async Task SaveAsync()
         {
             ThrowIfDisposed();
-            fileLock.EnterWriteLock();
-            try
-            {
-                var allProducts = await GetAllAsync().ConfigureAwait(false);
-                var notPushedProducts = products.Except(allProducts);
 
-                await serializer.SerializeAsync(notPushedProducts).ConfigureAwait(false);
-            }
-            finally
-            {
-                fileLock.ExitWriteLock();
-            }
+            if (Serializer == null) return;
+
+            var allProducts = await GetAllAsync().ConfigureAwait(false);
+            var notPushedProducts = products.Except(allProducts);
+
+            await Serializer.SerializeAsync(notPushedProducts).ConfigureAwait(false);
         }
 
         public void Dispose()
@@ -77,7 +60,8 @@
         {
             if (disposed) return;
 
-            if (disposing) fileLock = null;
+            if (disposing)
+                (Serializer as IDisposable)?.Dispose();
 
             disposed = true;
         }

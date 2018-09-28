@@ -5,9 +5,9 @@
 
     using Products.DAL.EF.Configurations;
 
-    public abstract class Context : DbContext
+    public abstract class EfContext : DbContext
     {
-        protected Context(DbConnection connection)
+        protected EfContext(DbConnection connection)
             : base(connection, true)
         {
         }

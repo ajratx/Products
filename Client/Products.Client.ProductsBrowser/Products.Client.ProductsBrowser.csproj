@@ -154,6 +154,10 @@
       <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
       <Name>Products.Business.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DAL\Products.DAL.File.JSON\Products.DAL.File.JSON.csproj">
+      <Project>{D9D894F0-F2E5-49A3-A33A-004A4718354D}</Project>
+      <Name>Products.DAL.File.JSON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
       <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
       <Name>Products.Infrastructure.Core</Name>

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,7 +18,7 @@
         private const string TestJsonFile = "C:\\Shared\\test.json";
 
         [TestMethod]
-        public void TestMethod1()
+        public void FileNotExists()
         {
             if (File.Exists(TestJsonFile)) File.Delete(TestJsonFile);
 
@@ -39,7 +40,27 @@
 
             products = serializer.DeserializeAsync().Result.ToList();
 
+            serializer.Dispose();
+
             Assert.AreEqual(3, products.Count);
+        }
+
+        [TestMethod]
+        public void FileNotExists1()
+        {
+            if (File.Exists(TestJsonFile)) File.Delete(TestJsonFile);
+
+            var settings = Mock.Of<ISerializerSettings>();
+            settings.FilePath = TestJsonFile;
+
+            var serializer = new JsonSerializer<Product>(settings);
+            var products = new List<Product>
+                               {
+                                   new Product { Name = "Product #1", Price = 1.23M, Count = 3 },
+                                   new Product { Name = "Product #2", Price = 4.56M, Count = 8 }
+                               };
+
+            Parallel.Invoke(() => serializer.Dispose(), () => serializer.SerializeAsync(new Product[] {}));
         }
     }
 }

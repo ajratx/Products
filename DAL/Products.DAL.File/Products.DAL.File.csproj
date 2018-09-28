@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseSerializer.cs" />
-    <Compile Include="Interfaces\IFileRepositorySettings.cs" />
+    <Compile Include="FileRepository.cs" />
     <Compile Include="Interfaces\ISerializer.cs" />
     <Compile Include="Interfaces\ISerializerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

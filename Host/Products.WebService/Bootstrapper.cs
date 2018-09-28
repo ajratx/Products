@@ -6,7 +6,7 @@
     using Products.Business.Contracts;
     using Products.Business.Entities;
     using Products.Business.Services;
-    using Products.DAL.Core.Interfaces;
+    using Products.DAL.Core;
     using Products.DAL.EF.Interfaces;
     using Products.DAL.EF.LocalDB;
     using Products.Infrastructure.Core.Interfaces;
@@ -26,9 +26,9 @@
                 ConnectionString = ConfigurationManager.ConnectionStrings[ConnectioStringName].ConnectionString
             };
 
-            builder.RegisterInstance<IRepositorySettings>(repositorySetting).SingleInstance();
+            builder.RegisterInstance<IEfRepositorySettings>(repositorySetting).SingleInstance();
             builder.Register(x => new DefaultLog()).As<ILog>().SingleInstance();
-            builder.RegisterType<ProductRepository>().As<IRepository<Product>>();
+            builder.RegisterType<ProductsRepository>().As<IRepository<Product>>();
             builder.RegisterType<ProductService>().As<IProductContract>();
 
             return builder.Build();
