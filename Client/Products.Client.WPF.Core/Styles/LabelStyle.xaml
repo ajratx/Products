@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="{x:Type Label}" x:Key="DefaultLabelStyle">
         <Setter Property="FontFamily" Value="Tahoma" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Height" Value="28" />
@@ -22,5 +22,9 @@
 
     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource StatusBarLabelStyle}" x:Key="FaultedStatusBarLabelStyle">
         <Setter Property="Foreground" Value="Red" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource StatusBarLabelStyle}" x:Key="SuccessPartiallyStatusBarLabelStyle">
+        <Setter Property="Foreground" Value="Blue" />
     </Style>
 </ResourceDictionary>

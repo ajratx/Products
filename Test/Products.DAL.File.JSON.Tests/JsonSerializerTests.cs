@@ -46,7 +46,7 @@
         }
 
         [TestMethod]
-        public void FileNotExists1()
+        public void MultiThread()
         {
             if (File.Exists(TestJsonFile)) File.Delete(TestJsonFile);
 

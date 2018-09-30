@@ -1,8 +1,7 @@
 ﻿<UserControl x:Class="Products.Client.ProductsCreator.UserControls.ProductCreatorUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:resources="clr-namespace:Products.Client.ProductsCreator.Resources"
-             xmlns:vrules="clr-namespace:Products.Client.ProductsCreator.ValidationRules">
+             xmlns:resources="clr-namespace:Products.Client.ProductsCreator.Resources">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type Label}" 
@@ -27,15 +26,8 @@
             Content="{x:Static resources:Literals.NameLabelCaption}" />
         <TextBox 
             Grid.Row="0"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <vrules:NotEmptyString />
-                    </Binding.ValidationRules>
-                 </Binding>
-            </TextBox.Text>
-        </TextBox>
+            Grid.Column="1" 
+            Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
         <Label 
             Grid.Row="1"
             Grid.Column="0"
@@ -43,7 +35,7 @@
         <TextBox 
             Grid.Row="1" 
             Grid.Column="1"
-            Text="{Binding Path=Count}" />
+            Text="{Binding Path=Count, UpdateSourceTrigger=PropertyChanged}" />
         <Label
             Grid.Row="2"
             Grid.Column="0"
@@ -51,13 +43,13 @@
         <TextBox 
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Path=Price}" />
+            Text="{Binding Path=Price, UpdateSourceTrigger=PropertyChanged}" />
 
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
             <Button 
                 Content="{x:Static resources:Literals.CreateButtonCaption}"
                 Command="{Binding CreateProductCommand}" 
-                Width="150"/>
+                Width="150" />
         </StackPanel>
     </Grid>
 </UserControl>

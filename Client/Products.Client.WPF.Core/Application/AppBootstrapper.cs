@@ -1,4 +1,4 @@
-﻿namespace Products.Client.WPF.Common.Utility
+﻿namespace Products.Client.WPF.Core.Application
 {
     using System.Windows;
 

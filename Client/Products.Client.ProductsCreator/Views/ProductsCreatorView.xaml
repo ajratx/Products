@@ -34,11 +34,15 @@
                 <Grid>
                     <Label
                         Style="{StaticResource SuccessStatusBarLabelStyle}"
-                        Content="{x:Static resources:Literals.CreateSuccsess}"
+                        Content="{x:Static resources:Literals.CreatingIsSuccessfullyCompleted}"
                         Visibility="{Binding CreatingIsSuccessfullyCompleted, Converter={StaticResource BoolToVis}}" />
                     <Label
+                        Style="{StaticResource SuccessPartiallyStatusBarLabelStyle}"
+                        Content="{x:Static resources:Literals.CreatingSuccessPartially}"
+                        Visibility="{Binding CreatingIsSuccessPartially, Converter={StaticResource BoolToVis}}" />
+                    <Label
                         Style="{StaticResource FaultedStatusBarLabelStyle}"
-                        Content="{x:Static resources:Literals.CreateFaulted}"
+                        Content="{x:Static resources:Literals.CreatingIsFaulted}"
                         Visibility="{Binding CreatingIsFaulted, Converter={StaticResource BoolToVis}}" />
                 </Grid>
             </StatusBar>

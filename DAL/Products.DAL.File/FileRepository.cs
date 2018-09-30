@@ -12,11 +12,17 @@
     public abstract class FileRepository<T> : IRepository<T>, IDisposable
         where T : class
     {
-        private readonly ConcurrentQueue<T> products;
+        private readonly ConcurrentStack<T> entitiesStack;
+
+        private readonly IEqualityComparer<T> comparer;
 
         private bool disposed;
 
-        protected FileRepository() => products = new ConcurrentQueue<T>();
+        protected FileRepository(IEqualityComparer<T> comparer = null)
+        {
+            entitiesStack = new ConcurrentStack<T>();
+            this.comparer = comparer;
+        } 
 
         protected abstract ISerializer<T> Serializer { get; }
 
@@ -25,8 +31,9 @@
             ThrowIfDisposed();
             await Task.Run(
                 () =>
-                    {
-                        foreach (var entity in entities) products.Enqueue(entity);
+                    { 
+                        foreach (var entity in entities)
+                            entitiesStack.Push(entity);
                     }).ConfigureAwait(false);
         }
 
@@ -45,10 +52,12 @@
 
             if (Serializer == null) return;
 
-            var allProducts = await GetAllAsync().ConfigureAwait(false);
-            var notPushedProducts = products.Except(allProducts);
+            var entitiesInFile = await GetAllAsync().ConfigureAwait(false) ?? new T[] { };
+            var entitiesToSave = entitiesStack.Union(entitiesInFile, comparer);
 
-            await Serializer.SerializeAsync(notPushedProducts).ConfigureAwait(false);
+            await Serializer.SerializeAsync(entitiesToSave).ConfigureAwait(false);
+
+            entitiesStack.Clear();
         }
 
         public void Dispose()

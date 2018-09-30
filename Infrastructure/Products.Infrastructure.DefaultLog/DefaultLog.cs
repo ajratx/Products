@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
 
-    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.Core;
 
     public class DefaultLog : ILog
     {

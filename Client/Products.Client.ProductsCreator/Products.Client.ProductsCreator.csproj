@@ -75,6 +75,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
@@ -178,6 +179,14 @@
       <Project>{8B5BA9B7-E32D-4A74-AF12-267DD34F41E4}</Project>
       <Name>Products.Business.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DAL\Products.DAL.File.JSON\Products.DAL.File.JSON.csproj">
+      <Project>{D9D894F0-F2E5-49A3-A33A-004A4718354D}</Project>
+      <Name>Products.DAL.File.JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DAL\Products.DAL.File\Products.DAL.File.csproj">
+      <Project>{9691FCB7-F181-482A-8D8A-45AF6456BE6E}</Project>
+      <Name>Products.DAL.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
       <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
       <Name>Products.Infrastructure.Core</Name>
@@ -190,9 +199,9 @@
       <Project>{BAE844F9-1B20-49D1-8A48-D05491CB4C8A}</Project>
       <Name>Products.Client.WCF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Products.Client.WPF.Common\Products.Client.WPF.Common.csproj">
+    <ProjectReference Include="..\Products.Client.WPF.Core\Products.Client.WPF.Core.csproj">
       <Project>{8F734187-809D-45F6-A70B-182044B59127}</Project>
-      <Name>Products.Client.WPF.Common</Name>
+      <Name>Products.Client.WPF.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

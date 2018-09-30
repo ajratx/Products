@@ -9,42 +9,62 @@
         Title="{x:Static resources:Literals.WindowsTitle}">
     <Grid>
         <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
             <xctk:InverseBoolConverter x:Key="InverseBoolConverter" />
         </Grid.Resources>
-        <TabControl>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <TabControl Grid.Row="0">
             <TabItem 
-                Header="{x:Static resources:Literals.FilesFromDbTabCaption}"
+                Header="{x:Static resources:Literals.ProductsFromDbTabCaption}"
                 IsEnabled="{Binding Path=IsWaitingDownloadFromDb, Converter={StaticResource InverseBoolConverter}}">
                 <Grid>
-                    <xctk:BusyIndicator 
-                        IsBusy="{Binding Path=IsWaitingDownloadFromDb}" 
-                        Content="{x:Static resources:Literals.WaitDownloadFromDb}"/>
                     <userControls:DataGridUserControl 
                         ItemsSource="{Binding Path=ProductsFromDb}"/>
+                    <xctk:BusyIndicator 
+                        IsBusy="{Binding Path=IsWaitingDownloadFromDb}" 
+                        BusyContent="{x:Static resources:Literals.WaitDownloadFromDb}" />
                 </Grid>
             </TabItem>
             <TabItem 
-                Header="{x:Static resources:Literals.FileFromFileTabcaption}"
+                Header="{x:Static resources:Literals.NotUploadedProductsTabCaption}"
                 IsEnabled="{Binding Path=IsWaitingDownloadFromFile, Converter={StaticResource InverseBoolConverter}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <userControls:DataGridUserControl
+                        Grid.Row="0"
+                        ItemsSource="{Binding Path=NotUploadedToDbProducts}" />
                     <xctk:BusyIndicator
                         Grid.Row="0"
                         IsBusy="{Binding Path=IsWaitingDownloadFromFile}" 
-                        Content="{x:Static resources:Literals.WaitDownloadFromFile}" />
-                    <userControls:DataGridUserControl
-                        Grid.Row="0"
-                        ItemsSource="{Binding Path=ProductsFromFile}" />
+                        BusyContent="{x:Static resources:Literals.WaitDownloadFromFile}" />
                     <StackPanel Grid.Row="1" HorizontalAlignment="Right">
                         <Button
-                            Content="{x:Static resources:Literals.AddButtonCaption}"
-                            Width="150"/>
+                            Content="{x:Static resources:Literals.UploadButtonCaption}"
+                            Width="150" 
+                            Command="{Binding UploadToDatabase}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>
+        <StatusBar Grid.Row="1" Height="25">
+            <Grid>
+                <Label
+                    Style="{StaticResource SuccessStatusBarLabelStyle}"
+                    Content="{x:Static resources:Literals.UploadIsSuccessfullyCompleted}"
+                    Visibility="{Binding UploadIsSuccessfullyCompleted, Converter={StaticResource BoolToVis}}" />
+                <Label
+                    Style="{StaticResource FaultedStatusBarLabelStyle}"
+                    Content="{x:Static resources:Literals.UploadIsFaulted}"
+                    Visibility="{Binding UploadIsFaulted, Converter={StaticResource BoolToVis}}" />
+            </Grid>
+        </StatusBar>
     </Grid>
 </Window>

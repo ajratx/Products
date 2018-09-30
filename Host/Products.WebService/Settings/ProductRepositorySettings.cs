@@ -1,4 +1,4 @@
-﻿namespace Products.WebService.Models
+﻿namespace Products.WebService.Settings
 {
     using Products.DAL.EF.Interfaces;
 

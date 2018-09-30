@@ -42,6 +42,15 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Nito.Disposables, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Disposables.1.2.3\lib\netstandard2.0\Nito.Disposables.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Mvvm.Async, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Mvvm.Async.1.0.0-pre-03\lib\netstandard2.0\Nito.Mvvm.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Mvvm.Core, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Mvvm.Core.1.2.2\lib\netstandard2.0\Nito.Mvvm.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -52,6 +61,10 @@
       <HintPath>..\..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -158,6 +171,10 @@
       <Project>{D9D894F0-F2E5-49A3-A33A-004A4718354D}</Project>
       <Name>Products.DAL.File.JSON</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DAL\Products.DAL.File\Products.DAL.File.csproj">
+      <Project>{9691FCB7-F181-482A-8D8A-45AF6456BE6E}</Project>
+      <Name>Products.DAL.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Products.Infrastructure.Core\Products.Infrastructure.Core.csproj">
       <Project>{31B62DB8-BA6C-4A02-AB3E-C935E86D8EF9}</Project>
       <Name>Products.Infrastructure.Core</Name>
@@ -170,9 +187,9 @@
       <Project>{BAE844F9-1B20-49D1-8A48-D05491CB4C8A}</Project>
       <Name>Products.Client.WCF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Products.Client.WPF.Common\Products.Client.WPF.Common.csproj">
+    <ProjectReference Include="..\Products.Client.WPF.Core\Products.Client.WPF.Core.csproj">
       <Project>{8F734187-809D-45F6-A70B-182044B59127}</Project>
-      <Name>Products.Client.WPF.Common</Name>
+      <Name>Products.Client.WPF.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

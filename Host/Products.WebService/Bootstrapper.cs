@@ -9,9 +9,9 @@
     using Products.DAL.Core;
     using Products.DAL.EF.Interfaces;
     using Products.DAL.EF.LocalDB;
-    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.Core;
     using Products.Infrastructure.DefaultLog;
-    using Products.WebService.Models;
+    using Products.WebService.Settings;
 
     public static class Bootstrapper
     {

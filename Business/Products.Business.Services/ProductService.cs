@@ -8,7 +8,7 @@
     using Products.Business.Contracts;
     using Products.Business.Entities;
     using Products.DAL.Core;
-    using Products.Infrastructure.Core.Interfaces;
+    using Products.Infrastructure.Core;
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public sealed class ProductService : IProductContract, IDisposable

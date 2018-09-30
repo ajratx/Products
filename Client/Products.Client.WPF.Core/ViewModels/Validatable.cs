@@ -1,4 +1,4 @@
-﻿namespace Products.Client.WPF.Common
+﻿namespace Products.Client.WPF.Core.ViewModels
 {
     using System;
     using System.Collections;

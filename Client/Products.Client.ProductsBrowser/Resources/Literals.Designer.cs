@@ -61,38 +61,11 @@ namespace Products.Client.ProductsBrowser.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Добавить.
-        /// </summary>
-        public static string AddButtonCaption {
-            get {
-                return ResourceManager.GetString("AddButtonCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Количество.
         /// </summary>
         public static string CountColumnHeader {
             get {
                 return ResourceManager.GetString("CountColumnHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Файл.
-        /// </summary>
-        public static string FileFromFileTabcaption {
-            get {
-                return ResourceManager.GetString("FileFromFileTabcaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to База данных.
-        /// </summary>
-        public static string FilesFromDbTabCaption {
-            get {
-                return ResourceManager.GetString("FilesFromDbTabCaption", resourceCulture);
             }
         }
         
@@ -106,11 +79,56 @@ namespace Products.Client.ProductsBrowser.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Продукты, не загруженные БД.
+        /// </summary>
+        public static string NotUploadedProductsTabCaption {
+            get {
+                return ResourceManager.GetString("NotUploadedProductsTabCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цена.
         /// </summary>
         public static string PriceColumnHeader {
             get {
                 return ResourceManager.GetString("PriceColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Продукты из БД.
+        /// </summary>
+        public static string ProductsFromDbTabCaption {
+            get {
+                return ResourceManager.GetString("ProductsFromDbTabCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        public static string UploadButtonCaption {
+            get {
+                return ResourceManager.GetString("UploadButtonCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось загрузить продукты в БД.
+        /// </summary>
+        public static string UploadIsFaulted {
+            get {
+                return ResourceManager.GetString("UploadIsFaulted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Продукты успешно загружены в БД.
+        /// </summary>
+        public static string UploadIsSuccessfullyCompleted {
+            get {
+                return ResourceManager.GetString("UploadIsSuccessfullyCompleted", resourceCulture);
             }
         }
         

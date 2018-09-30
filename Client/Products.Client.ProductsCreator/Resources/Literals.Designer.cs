@@ -79,29 +79,38 @@ namespace Products.Client.ProductsCreator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cоздание продукта ....
+        /// </summary>
+        public static string CreatingExecuting {
+            get {
+                return ResourceManager.GetString("CreatingExecuting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось создать продукт.
         /// </summary>
-        public static string CreateFaulted {
+        public static string CreatingIsFaulted {
             get {
-                return ResourceManager.GetString("CreateFaulted", resourceCulture);
+                return ResourceManager.GetString("CreatingIsFaulted", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Продукт успешно создан.
         /// </summary>
-        public static string CreateSuccsess {
+        public static string CreatingIsSuccessfullyCompleted {
             get {
-                return ResourceManager.GetString("CreateSuccsess", resourceCulture);
+                return ResourceManager.GetString("CreatingIsSuccessfullyCompleted", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cоздание продукта ....
+        ///   Looks up a localized string similar to Продукт сохранен только в файле.
         /// </summary>
-        public static string CreatingExecuting {
+        public static string CreatingSuccessPartially {
             get {
-                return ResourceManager.GetString("CreatingExecuting", resourceCulture);
+                return ResourceManager.GetString("CreatingSuccessPartially", resourceCulture);
             }
         }
         

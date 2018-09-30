@@ -2,27 +2,41 @@
 {
     using System;
     using System.Threading.Tasks;
-
+    using FluentValidation;
     using Nito.Mvvm;
-
-    using Prism.Mvvm;
 
     using Products.Business.Contracts;
     using Products.Business.Entities;
-    using Products.Infrastructure.Core.Interfaces;
+    using Products.Client.WPF.Core.ViewModels;
+    using Products.DAL.File;
+    using Products.Infrastructure.Core;
     using Products.Infrastructure.DefaultLog;
 
-    internal sealed class ProductsCreatorViewModel : BindableBase
+    internal sealed class ProductsCreatorViewModel : ValidatableBase<Product>
     {
-        private readonly IProductContract products;
+        private readonly IProductContract productsServiceClient;
+        private readonly FileRepository<Product> fileRepository;
         private readonly ILog log;
         private string name;
         private decimal price;
         private int count;
 
-        public ProductsCreatorViewModel(IProductContract products, ILog log)
+        private bool createdInDb;
+        private bool createdInFile;
+
+        public ProductsCreatorViewModel(
+            IProductContract productsServiceClient,
+            FileRepository<Product> fileRepository,
+            AbstractValidator<Product> validator, 
+            ILog log)
+            : base(validator)
         {
-            this.products = products ?? throw new ArgumentNullException(nameof(products));
+            this.productsServiceClient = productsServiceClient 
+                ?? throw new ArgumentNullException(nameof(productsServiceClient));
+
+            this.fileRepository = fileRepository
+                ?? throw new ArgumentNullException(nameof(fileRepository));
+
             this.log = log ?? new DefaultLog();
 
             CreateProductCommand = new AsyncCommand(CreateProductAsync);
@@ -31,6 +45,8 @@
         public IAsyncCommand CreateProductCommand { get; set; }
 
         public bool CreatingIsSuccessfullyCompleted { get; private set; }
+
+        public bool CreatingIsSuccessPartially { get; private set; }
 
         public bool CreatingIsFaulted { get; private set; }
 
@@ -52,38 +68,79 @@
             set => SetProperty(ref count, value);
         }
 
+        protected override Product Model => new Product { Name = Name, Price = Price, Count = Count };
+
         private async Task CreateProductAsync()
         {
             HideInfoAboutCreating();
 
+            await AddProductToDatabaseAsync();
+            await AddProductToFileStorageAsync();
+
+            ShowCreatingInfo();
+        }
+
+        private async Task AddProductToDatabaseAsync()
+        {   
             try
-            {
-                var newProduct = new Product { Name = Name, Price = Price, Count = Count };
-
-                await products.AddAsync(newProduct).ConfigureAwait(false);
-
-                SayCreatingSuccessfullyCompleted();
+            {     
+                await productsServiceClient.AddAsync(Model).ConfigureAwait(false);
+                createdInDb = true;
             }
             catch (Exception e)
             {
                 log.Error(e);
-                SayCreaingFaulted();
+                createdInDb = false;
+            }
+        }
+
+        private async Task AddProductToFileStorageAsync()
+        {
+            try
+            {
+                await fileRepository.AddAsync(Model).ConfigureAwait(false);
+                await fileRepository.SaveAsync();
+                createdInFile = true;
+            }
+            catch (Exception e)
+            {
+                log.Error(e);
+                createdInFile = false;
             }
         }
 
         private void HideInfoAboutCreating()
         {
             CreatingIsSuccessfullyCompleted = false;
+            CreatingIsSuccessPartially = false;
             CreatingIsFaulted = false;
 
             RaisePropertyChanged(nameof(CreatingIsSuccessfullyCompleted));
+            RaisePropertyChanged(nameof(CreatingIsSuccessPartially));
             RaisePropertyChanged(nameof(CreatingIsFaulted));
+        }
+
+        private void ShowCreatingInfo()
+        {
+            if (createdInDb && createdInFile)
+                SayCreatingSuccessfullyCompleted();
+            else
+            {
+                if (!createdInDb && !createdInFile) SayCreaingFaulted(); 
+                else SayCreatingSuccessPartially();
+            }
         }
 
         private void SayCreatingSuccessfullyCompleted()
         {
             CreatingIsSuccessfullyCompleted = true;
             RaisePropertyChanged(nameof(CreatingIsSuccessfullyCompleted));
+        }
+
+        private void SayCreatingSuccessPartially()
+        {
+            CreatingIsSuccessPartially = true;
+            RaisePropertyChanged(nameof(CreatingIsSuccessPartially));
         }
 
         private void SayCreaingFaulted()

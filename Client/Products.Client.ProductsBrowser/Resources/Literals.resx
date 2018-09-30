@@ -117,23 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddButtonCaption" xml:space="preserve">
-    <value>Добавить</value>
-  </data>
   <data name="CountColumnHeader" xml:space="preserve">
     <value>Количество</value>
-  </data>
-  <data name="FileFromFileTabcaption" xml:space="preserve">
-    <value>Файл</value>
-  </data>
-  <data name="FilesFromDbTabCaption" xml:space="preserve">
-    <value>База данных</value>
   </data>
   <data name="NameColumnHeader" xml:space="preserve">
     <value>Наименование</value>
   </data>
+  <data name="NotUploadedProductsTabCaption" xml:space="preserve">
+    <value>Продукты, не загруженные БД</value>
+  </data>
   <data name="PriceColumnHeader" xml:space="preserve">
     <value>Цена</value>
+  </data>
+  <data name="ProductsFromDbTabCaption" xml:space="preserve">
+    <value>Продукты из БД</value>
+  </data>
+  <data name="UploadButtonCaption" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="UploadIsFaulted" xml:space="preserve">
+    <value>Не удалось загрузить продукты в БД</value>
+  </data>
+  <data name="UploadIsSuccessfullyCompleted" xml:space="preserve">
+    <value>Продукты успешно загружены в БД</value>
   </data>
   <data name="WaitDownloadFromDb" xml:space="preserve">
     <value>Загрузка данных из базы данных ...</value>

@@ -123,14 +123,17 @@
   <data name="CreateButtonCaption" xml:space="preserve">
     <value>Создать</value>
   </data>
-  <data name="CreateFaulted" xml:space="preserve">
-    <value>Не удалось создать продукт</value>
-  </data>
-  <data name="CreateSuccsess" xml:space="preserve">
-    <value>Продукт успешно создан</value>
-  </data>
   <data name="CreatingExecuting" xml:space="preserve">
     <value>Cоздание продукта ...</value>
+  </data>
+  <data name="CreatingIsFaulted" xml:space="preserve">
+    <value>Не удалось создать продукт</value>
+  </data>
+  <data name="CreatingIsSuccessfullyCompleted" xml:space="preserve">
+    <value>Продукт успешно создан</value>
+  </data>
+  <data name="CreatingSuccessPartially" xml:space="preserve">
+    <value>Продукт сохранен только в файле</value>
   </data>
   <data name="NameLabelCaption" xml:space="preserve">
     <value>Наименование</value>
